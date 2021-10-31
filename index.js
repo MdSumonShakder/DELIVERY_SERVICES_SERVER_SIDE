@@ -46,8 +46,24 @@ async function run() {
       res.json(singleService);
     });
 
+
+
+    /// POST API
+
+    app.post('/Order', async (req, res) => {
+      const order = req.body;
+      console.log('hit to point', order);
+      const result = await deliveryCollection.insertOne(order);
+      console.log(result);
+      res.json(result)
+    });
+
+
+
+
+
     ///// DELETE SINGLE ORDER-SERVICES
-    app.delete('/services/:id', async (req, res) => {
+    app.delete('/Order/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
       const result = await deliveryCollection.deleteOne(query);
