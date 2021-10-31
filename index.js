@@ -29,15 +29,15 @@ async function run() {
 
 
     /// GET API ORDER-SERVICES
-
     app.get('/Order', async (req, res) => {
       const cursor = deliveryCollection.find({});
       const order = await cursor.toArray();
       res.send(order);
     });
 
-    /// GET SINGLE ORDER-SERVICES
 
+
+    /// GET SINGLE ORDER-SERVICES
     app.get('/Order/:id', async (req, res) => {
       const id = req.params.id;
       console.log('order res', id);
@@ -45,22 +45,6 @@ async function run() {
       const singleService = await deliveryCollection.findOne(query);
       res.json(singleService);
     });
-
-
-
-    /// POST API
-
-    app.post('/Order', async (req, res) => {
-      const order = req.body;
-      console.log('hit to point', order);
-      const result = await deliveryCollection.insertOne(order);
-      console.log(result);
-      res.json(result)
-    });
-
-
-
-
 
     ///// DELETE SINGLE ORDER-SERVICES
     app.delete('/Order/:id', async (req, res) => {
